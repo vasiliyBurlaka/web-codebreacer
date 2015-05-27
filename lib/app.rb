@@ -10,8 +10,6 @@ class App
     @game = game_init(DATA_PATH + game_file)
 	end
 
-
-
   def game_init(file_name)
     puts file_name
     if File.exist?(file_name)
@@ -24,12 +22,11 @@ class App
     game
   end
 
-	def load(file_name)
+  def load(file_name)
     Marshal.load(File.read(file_name))
-	end
+  end
 
   def save(file_name)
-
     File.open(file_name, 'w') {|f| 
       f.write(Marshal.dump(@game)) 
     }
