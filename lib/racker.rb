@@ -12,7 +12,8 @@ class Racker
   def response
     case @request.path
     when "/" then Rack::Response.new(render("index.html.erb"))
-    when "/requests" then Rack::Response.new(requests("requests.rb"))
+    when "/requests" then 
+      Rack::Response.new(requests("requests.rb"))
     else Rack::Response.new("Not Found", 404)
     end
   end
