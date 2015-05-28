@@ -5,10 +5,16 @@
   </head>
   <body>
     <div id="container">
-      <h1>You said '<%= 'hello' %>'</h1>
+      <h1>You said '<%= path %>'</h1>
       <p>Say somthing new</p>
-      <form method="post" action="/update_word">
-        <input name="word" type="text">
+      <form method="post" action="/check">
+        <input name="word" type="text"><br/><br/>
+        <input type="submit" value="Say!">
+      </form>
+      <form method="post" action="/hint">
+        <input type="submit" value="Say!">
+      </form>
+      <form method="post" action="/save">
         <input type="submit" value="Say!">
       </form>
     </div>
