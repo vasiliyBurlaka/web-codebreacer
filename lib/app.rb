@@ -3,58 +3,54 @@ require 'codebreaker'
 class App 
   
   DATA_FOLDER = 'data'
-  attr_reader :game
-  attr_reader :history
+  SCOREBOARD_FILE = 'scoreboard.marsh'
 
   def initialize(file_name)
-    game_file = DATA_FOLDER + '/' + file_name
-    hist_file = game_file + '.hist'
-    game_init(game_file, hist_file)
-
+    @game_file = DATA_FOLDER + '/' + file_name
+    @scoreboard_file = DATA_FOLDER + '/' + SCOREBOARD_FILE
+    game_init
+    scoreboard_init
   end
 
-  def game_init(game_file, hist_file)
-    if File.exist?(game_file)
-      @game = load(game_file)
+  def prev_results
+    @game.gues_results
+  end
 
-      if File.exist?(hist_file)
-        @history = load(hist_file)
-      else
-        hist_init(hist_file)
-      end
+  def check(gues)
+    @game.check(gues)
+    File.open(@game_file, 'w') {|f| f.write(Marshal.dump(@game)) }
+  end
+
+  def status
+    @game.game_status
+  end
+
+  def score
+    @game.score
+  end
+
+  def save_res(name)
+    @score_board
+  end
+
+
+private
+  def scoreboard_init
+    if File.exist?(@scoreboard_file)
+      @score_board = Marshal.load(File.read(@scoreboard_file))
     else
-      @game = Codebreaker::Game.new
-      @game.start
-      save(@game, game_file)
-
-      hist_init(hist_file)
+      @score_board = []
+      File.open(@scoreboard_file, 'w') {|f| f.write(Marshal.dump(@score_board)) }
     end
   end
 
-  def hist_init(hist_file)
-    @history = {}
-    save(@history, hist_file)
-  end
-
-  def load(file_name)
-    Marshal.load(File.read(file_name))
-  end
-
-  def save(obj, file_name)
-    File.open(file_name, 'w') {|f| 
-      f.write(Marshal.dump(obj))
-    }
+  def game_init
+    if File.exist?(@game_file)
+      @game = Marshal.load(File.read(@game_file))
+    else
+      @game = Codebreaker::Game.new
+      @game.start
+      File.open(@game_file, 'w') {|f| f.write(Marshal.dump(@game)) }
+    end
   end
 end
-
-#=begin
-aplication = App.new('test.marshal1')
-puts aplication.game.round_number
-puts aplication.game.check(1234).to_s
-puts aplication.game.check(5612).to_s
-puts aplication.game.check(3456).to_s
-puts aplication.game.check(3663).to_s
-
-puts aplication.game.score
-puts aplication.game.round_number
-#=end

@@ -5,18 +5,48 @@
   </head>
   <body>
     <div id="container">
-      <h1>You said '<%= path %>'</h1>
-      <p>Say somthing new</p>
-      <form method="post" action="/check">
-        <input name="word" type="text"><br/><br/>
-        <input type="submit" value="Say!">
-      </form>
-      <form method="post" action="/hint">
-        <input type="submit" value="Say!">
-      </form>
-      <form method="post" action="/save">
-        <input type="submit" value="Say!">
-      </form>
+      <div id="header">
+        <h1>Codebreaker<h1>
+      </div>
+      <div id="body">
+        <div id="content">
+          <div>
+            <% application.prev_results.each do |val| %>
+              <%= val %><br/>
+            <% end %>
+            <% if application.status == 'play' %>
+            <form method="post" action="/check">
+              <input name="gues" type="text">
+              <input type="submit" value="check!">
+            </form>
+            <% elsif application.status == 'win'%>
+              <h1>WIN</h1>
+              <h2>
+                score: <%= application.score %> points
+              <h2>
+              <form method="post" action="/save">
+                <input name="name" type="text" placeholder="enter your name">
+                <input type="submit" value="save!">
+              </form>
+            <% else %>
+              <h1>lose<h1>
+            <% end %>
+          </div>
+          <div id="rules">
+            Rules must be here 
+          </div>
+        </div>
+        <div id="viners">
+          <ul>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
   </body>
 </html>

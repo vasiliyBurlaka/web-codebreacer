@@ -1,5 +1,5 @@
 body {
-    background-color: #4B7399;
+<!--    background-color: #4B7399; -->
     font-family: Verdana;
     font-size: 14px;
 }
@@ -11,6 +11,20 @@ body {
     border: solid 1px black;
     margin-top: 20px;
 }
+#content {
+    float: left;
+    background-color: #FFF;
+    border: solid 1px black;
+}
+#viners {
+  width: 30%;
+  float: right;
+  border: solid -1px green;
+  background-color: #FFF;
+  border: solid 1px black;
+}
+
 a {
     color: #0000FF;
 }
+
