@@ -1,10 +1,11 @@
 body {
-<!--    background-color: #4B7399; -->
+    background-color: #4B7399;
     font-family: Verdana;
     font-size: 14px;
 }
 #container {
     width: 75%;
+    height: 80%;
     margin: 0 auto;
     background-color: #FFF;
     padding: 20px 40px;
@@ -13,18 +14,22 @@ body {
 }
 #content {
     float: left;
+    width: 69%;
     background-color: #FFF;
     border: solid 1px black;
 }
 #viners {
   width: 30%;
   float: right;
-  border: solid -1px green;
   background-color: #FFF;
   border: solid 1px black;
 }
 
 a {
     color: #0000FF;
+}
+
+form {
+    margin: 5px;
 }
 
