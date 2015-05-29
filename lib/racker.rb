@@ -53,7 +53,7 @@ class Racker
   end
 
   def game_file_name
-    if @request.cookies["game_file_name"].empty?
+    if @request.cookies["game_file_name"].to_s.empty?
       SecureRandom.hex
     else
       @request.cookies["game_file_name"]
