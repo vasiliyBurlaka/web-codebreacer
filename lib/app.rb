@@ -13,7 +13,7 @@ class App
     @game_file = data_folder + '/' + file_name
     game_init
 
-    @game.instance_variable_set(:@secret_code, '1234')
+#    @game.instance_variable_set(:@secret_code, '1234')
 
     @hint_val = @game.hint_val
 
